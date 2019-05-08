@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 curl -L -o counts.txt https://drive.google.com/uc?id=1e5IY1FTw3qAJ7SiIhwdR3RG0tYX_v7eZ
