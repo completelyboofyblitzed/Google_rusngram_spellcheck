@@ -9,9 +9,6 @@ import torch.nn.functional as F
 from torch.utils.data.dataset import Dataset
 from torch.utils.data.dataloader import DataLoader
 
-from model_embeddings import ModelEmbeddings
-Hypothesis = namedtuple('Hypothesis', ['value', 'score'])
-
 
 class CharLM(nn.Module):
     """ Character Language Model:
