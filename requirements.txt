@@ -1,4 +1,4 @@
 google_ngram_downloader
-Levenshtein
+python-Levenshtein
 pybktree
 sklearn
