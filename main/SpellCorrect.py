@@ -107,8 +107,11 @@ Response: астрономія"""
             else:
                 if upper_boundary>0 and lower_boundary>0:
                     if seqprob>=upper_boundary or seqprob<lower_boundary:
+                        if not string.endswith('ш') or any(i.isdigit() for i in string):
+                            return self.return_upper(self.get_best(string),string)
+                        else:
 #                     if seqProb(s.lower())>=l:
-                        return string
+                            return string
                     else:
                         return self.return_upper(self.get_best(string),string)
                 else:
