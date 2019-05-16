@@ -114,8 +114,8 @@ Response: астрономія"""
                             return string
                     else:
                         return self.return_upper(self.get_best(string),string)
-                else:
-                    return self.return_upper(self.get_best(string),string)
+#                 else:
+#                     return self.return_upper(self.get_best(string),string)
                 # why not lower? because upper and lower characters look differently 
                 # and can be recognised as different symbols
                 
