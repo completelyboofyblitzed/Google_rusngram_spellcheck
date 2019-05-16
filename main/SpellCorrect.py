@@ -105,11 +105,11 @@ Response: астрономія"""
             if self.trie.find(s.lower(), 0):
                 return string
             else:
-                if upper_boundary>0 and lower_boundary>0:
-                    if seqprob>=upper_boundary or seqprob<lower_boundary:
-                        if not string.endswith('ш') or any(i.isdigit() for i in string):
-                            return self.return_upper(self.get_best(string),string)
-                        else:
+                if string.endswith('ш') or any(i.isdigit() for i in string):
+                    return self.return_upper(self.get_best(string),string)
+                else:
+                    if upper_boundary>0 and lower_boundary>0:
+                        if seqprob>=upper_boundary or seqprob<lower_boundary:
 #                     if seqProb(s.lower())>=l:
                             return string
                     else:
