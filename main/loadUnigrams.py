@@ -1,4 +1,4 @@
-### TODO: define l, model, etc
+### TODO: define boundaries, model, etc
 
 from google_ngram_downloader import readline_google_store
 from string import punctuation
