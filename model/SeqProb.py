@@ -1,7 +1,7 @@
 import sys
 from functools import reduce
 
-def char_probs(model, dataset, vocab):
+def seq_prob(model, dataset, vocab):
     for i in range(10):
         x, y, word_len = dataset[i]
         x = x.to(device)
