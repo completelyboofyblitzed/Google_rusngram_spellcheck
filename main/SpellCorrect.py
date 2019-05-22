@@ -113,6 +113,8 @@ Response: астрономія"""
                             return self.correction
                         else:
                             return string
+                else:
+                    return self.correction
 #                 else:
 #                     if upper_boundary>0 and lower_boundary>0:
 #                         if seqprob>=upper_boundary or seqprob<lower_boundary:
