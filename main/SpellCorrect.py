@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from ProbMaker import probMaker
-from CharLM.SeqProb import seqProb
+from model.SeqProb import seq_prob
 import pybktree
 from Levenshtein import editops, distance
 import pandas as pd
