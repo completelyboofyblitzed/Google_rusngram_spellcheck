@@ -105,17 +105,23 @@ Response: астрономія"""
             if self.trie.find(s.lower(), 0):
                 return string
             else:
-                if string.endswith('ш') or any(i.isdigit() for i in string):
-                    return self.return_upper(self.get_best(string),string)
-                else:
-                    if upper_boundary>0 and lower_boundary>0:
-                        if seqprob>=upper_boundary or seqprob<lower_boundary:
-#                     if seqProb(s.lower())>=l:
-                            return string
+                if upper_boundary>0 and lower_boundary>0:
+                    if seqprob<=upper_boundary or seqprob>=lower_boundary:
+                        self.correction = self.return_upper(self.get_best(string),string)
                     else:
-                        return self.return_upper(self.get_best(string),string)
+                        if self.rules(self.correction, string):
+                            return self.correction
+                        else:
+                            return string
 #                 else:
-#                     return self.return_upper(self.get_best(string),string)
+#                     if upper_boundary>0 and lower_boundary>0:
+#                         if seqprob>=upper_boundary or seqprob<lower_boundary:
+# #                     if seqProb(s.lower())>=l:
+                            
+#                     else:
+#                         return self.return_upper(self.get_best(string),string)
+# #                 else:
+# #                     return self.return_upper(self.get_best(string),string)
                 # why not lower? because upper and lower characters look differently 
                 # and can be recognised as different symbols
                 
@@ -127,3 +133,13 @@ Response: астрономія"""
                 return w[0].upper()+w[1:]
             else:
                 return w
+            
+    def rules(self, w, e):
+        if len(e)>4:
+            rule1 = e[-1] in 'шщцЦШЩ'
+            rule2 = any(i.isdigit() for i in e)
+            rule3 = e[-2] in 'щшцЩШЦ' and e[-1] in 'июяИЮЯ'
+            rule4 = 'ѣ' or 'Ѣ'  in w
+            if rule1 or rule2 or rule3 or rule4:
+              return True
+        return False
