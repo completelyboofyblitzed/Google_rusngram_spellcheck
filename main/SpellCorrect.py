@@ -3,7 +3,7 @@
 from ProbMaker import probMaker
 import sys
 sys.path[0:0] = ['../model']
-from model.SeqProb import seq_prob
+from SeqProb import seq_prob
 import pybktree
 from Levenshtein import editops, distance
 import pandas as pd
