@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from ProbMaker import probMaker
+import sys
 sys.path[0:0] = ['../model']
 from model.SeqProb import seq_prob
 import pybktree
