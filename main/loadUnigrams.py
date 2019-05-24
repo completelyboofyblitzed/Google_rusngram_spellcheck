@@ -9,6 +9,7 @@ import csv
 from SpellCorrect import spellCorrect
 import sys
 sys.path[0:0] = ['../model']
+from Utils import read_corpus, CharDataset
 from Model import CharLM
 from Vocab import Vocabulary
 # punct = punctuation+'«»—…“”*–'
