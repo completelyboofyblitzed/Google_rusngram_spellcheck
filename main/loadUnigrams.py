@@ -105,7 +105,7 @@ def main():
                                          
                                          
     for idx in unigram_indices:
-        load_unigrams(idx)
+        load_ngrams(idx)
         
     return 0
 
