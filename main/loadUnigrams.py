@@ -86,8 +86,8 @@ def main():
     
     data = read_corpus('../data/vocabulary.txt')
     V = Vocabulary(data)
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-    # device = torch.device('cpu')
+#     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cpu')
 #     model = CharLM(V.vocab_size, word_len=V.pad_len, emb_dim=128, hidden_size=128)
     model = CharLM(V)
     model.to(device)
