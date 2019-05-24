@@ -54,7 +54,10 @@ def load_ngrams(my_len, my_lang, my_indices, before_1918=False):
                     elif record.year >= 1918:
                         ngram = record.ngram
                         normalized = normalize(ngram)
-                        new_ngram = to_check(normalized)
+                        new_ngram = to_check(normalized, 
+                                             seqprob=False, 
+                                             upper_boundary=0.0008771931170485914, 
+                                             lower_boundary=0.0003082964103668928)
                         writer.writerow([my_indices,
                                          ngram,
                                          normalized,
