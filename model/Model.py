@@ -16,7 +16,7 @@ class CharLM(nn.Module):
         - Unidirection LSTM Layer
         - Fully Connected Layer
     """
-    def __init__(self, vocab, embed_dim=27,
+    def __init__(self, vocab, embed_dim=128,
                  hidden_dim=128, drop_prob=0.2, n_layers=2):
         """ Init Language Model.
 
