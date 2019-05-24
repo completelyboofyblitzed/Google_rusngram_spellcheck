@@ -110,8 +110,8 @@ Response: астрономія"""
             else:
                 if upper_boundary>0 and lower_boundary>0:
                     if not seqprob:
-                        seqprob = seq_prob(model, vocab, string)
-                        
+                        dataset = CharDataset([string], V=V)
+                        seqprob = seq_prob(model, dataset, V)
                     if seqprob<=upper_boundary or seqprob>=lower_boundary:
                         self.correction = self.return_upper(self.get_best(string),string)
                     else:
