@@ -1,4 +1,5 @@
 ### TODO: define boundaries, model, etc
+### condition if word == the word before
 
 import torch
 from google_ngram_downloader import readline_google_store
