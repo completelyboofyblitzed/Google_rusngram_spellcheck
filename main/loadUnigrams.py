@@ -7,6 +7,7 @@ from string import punctuation
 import re
 import csv
 from SpellCorrect import spellCorrect
+import sys
 sys.path[0:0] = ['../model']
 from Model import CharLM
 from Vocab import Vocabulary
