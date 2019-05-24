@@ -28,15 +28,15 @@ Response: астрономія"""
     def load_vocab(self):
         """Method to load dictionary from external data file."""
         print ("Loading dictionary from data file")
-        vocabulary = open('vocabulary.txt', 'r').read()  # pre-reform word forms
-        russian_dic = open('normal_vocabulary.txt', 'r').read()  #normal word forms
+        vocabulary = open('../data/vocabulary.txt', 'r').read()  # pre-reform word forms
+        russian_dic = open('../data/normal_vocabulary.txt', 'r').read()  #normal word forms
         return list(set([word.lower() for word in vocabulary.split("\n")+russian_dic.split("\n") if len(word)>4]))
 
     def load_counts(self):
         """Method to load counts from external data file."""
         print("Loading counts")
         counts = {}
-        lines = open('counts.txt', 'r').read().split("\n")
+        lines = open('../data/counts.txt', 'r').read().split("\n")
         for line in lines:
             if line:
                 l = line.split()
@@ -47,7 +47,7 @@ Response: астрономія"""
     def load_error_df(self):
         """Method to load a dataframe containing  from external data file."""
         print("Loading error dataframe")
-        error_df = pd.read_csv('error_df.csv')
+        error_df = pd.read_csv('../data/error_df.csv')
         return error_df
 
     def gen_candidates(self, word):
