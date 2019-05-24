@@ -93,7 +93,7 @@ def main():
     model.to(device)
     model_filename = "old_rus_lm.pth"
     print('Loading a model')
-    model.load_state_dict(torch.load('../data/' + model_filename, location: 'cpu'))
+    model.load_state_dict(torch.load('../data/' + model_filename, location = 'cpu'))
     print('Done')
     
     correct = spellCorrect()
