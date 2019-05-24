@@ -14,9 +14,6 @@ def seq_prob(model, dataset, vocab):
             if char=='<':
                 break
             idx = vocab.char2idx[char]
-#             print(output[char_idx])
-#             print()
-#             print(y_pred[char_idx][idx])
             probs.append(y_pred[char_idx][idx])
             multiplication = reduce(lambda x, y: x*y, probs)
         return multiplication/(word_len-1)
