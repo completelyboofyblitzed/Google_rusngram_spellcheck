@@ -33,7 +33,7 @@ class CharLM(nn.Module):
         self.vocab = vocab
         self.n_layers = n_layers
 
-        self.emb = nn.Embedding(vocab.vocab_size, emb_dim)
+        self.emb = nn.Embedding(vocab.vocab_size, embed_dim)
         self.lstm = nn.LSTM(self.embed_dim, hidden_dim, num_layers=n_layers, batch_first=True)
         self.fc = nn.Linear(in_features=hidden_dim*vocab.pad_len, out_features=vocab.vocab_size*vocab.pad_len)
 
@@ -46,7 +46,7 @@ class CharLM(nn.Module):
         @returns scores (Tensor): a tensor of shape (batch size, vocab size, word len)
         """
         # torch.Size([64, 27])
-        embeded = self.emb(input_seq).view(-1, self.vocab.pad_len, self.emb_dim)
+        embeded = self.emb(input_seq).view(-1, self.vocab.pad_len, self.embed_dim)
         # torch.Size([64, 27, 27]) or torch.Size([1, 27, 27])
         out, hidden = self.lstm(embeded)
         # torch.Size([64, 27, 1024])
