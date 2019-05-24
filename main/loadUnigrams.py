@@ -1,15 +1,17 @@
 ### TODO: define boundaries, model, etc
 
+import torch
 from google_ngram_downloader import readline_google_store
 from string import punctuation
 import re
 import csv
 from SpellCorrect import spellCorrect
-# from CharLM.SeqProb import seqProb
+sys.path[0:0] = ['../model']
+from Model import CharLM
 # punct = punctuation+'«»—…“”*–'
 # if len(record.ngram.strip(punct)) > 2
 '''
-A method to load Googl ngrams in csv files tables.
+A method to load Google ngrams in csv files tables.
 Table structure depends on the year boundary
 Params: nram length, language, index (the first letter)
 '''
