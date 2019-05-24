@@ -8,6 +8,7 @@ import csv
 from SpellCorrect import spellCorrect
 sys.path[0:0] = ['../model']
 from Model import CharLM
+from Vocab import Vocabulary
 # punct = punctuation+'«»—…“”*–'
 # if len(record.ngram.strip(punct)) > 2
 '''
@@ -76,9 +77,19 @@ def load_ngrams(my_len, my_lang, my_indices, before_1918=False):
 
 
 def main():
+    
+    data = read_corpus('../data/vocabulary.txt')
+    V = Vocabulary(data)
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    # device = torch.device('cpu')
+    model = CharLM(V.vocab_size, word_len=V.pad_len, emb_dim=128, hidden_size=128)
+    model.to(device)
+    model_filename = "old_rus_lm.pth"
+    print('Loading a model')
+    model.load_state_dict(torch.load('../data/' + model_filename))
+    print('Done')
+    
     correct = spellCorrect()
-    lm = None
-    l = 0
 
     unigram_indices = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
