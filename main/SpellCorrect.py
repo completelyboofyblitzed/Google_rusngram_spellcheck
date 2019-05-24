@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+### TODO: определить model, dataset,
 
 from ProbMaker import probMaker
 import sys
@@ -23,7 +24,6 @@ Response: астрономія"""
         self.trie = pybktree.BKTree(distance, self.vocab)
         self.error_df = self.load_error_df()
         self.pm = probMaker(self.error_df, self.counts)
-#         self.l = l
     
     def load_vocab(self):
         """Method to load dictionary from external data file."""
@@ -109,6 +109,9 @@ Response: астрономія"""
                 return string
             else:
                 if upper_boundary>0 and lower_boundary>0:
+                    if not seqprob:
+                        seqprob = seq_prob(model, vocab, string)
+                        
                     if seqprob<=upper_boundary or seqprob>=lower_boundary:
                         self.correction = self.return_upper(self.get_best(string),string)
                     else:
@@ -118,17 +121,6 @@ Response: астрономія"""
                             return string
                 else:
                     return self.return_upper(self.get_best(string),string)
-#                 else:
-#                     if upper_boundary>0 and lower_boundary>0:
-#                         if seqprob>=upper_boundary or seqprob<lower_boundary:
-# #                     if seqProb(s.lower())>=l:
-                            
-#                     else:
-#                         return self.return_upper(self.get_best(string),string)
-# #                 else:
-# #                     return self.return_upper(self.get_best(string),string)
-                # why not lower? because upper and lower characters look differently 
-                # and can be recognised as different symbols
                 
     def return_upper(self,w,e):
         if e.isupper():
