@@ -1,6 +1,8 @@
 import sys
 from functools import reduce
 
+device = torch.device('cpu')
+
 def seq_prob(model, dataset, vocab):
     for i in range(10):
         x, y, word_len = dataset[i]
