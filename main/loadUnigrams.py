@@ -112,7 +112,7 @@ def main():
     model.load_state_dict(torch.load('../data/' + model_filename, map_location={'cuda:0': 'cpu'}))
     print('Done')
     
-    correct = spellCorrect(V=V)
+    correct = spellCorrect(V=V, model=model)
 
     unigram_indices = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
