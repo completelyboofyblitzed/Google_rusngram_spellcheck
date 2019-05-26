@@ -18,7 +18,7 @@ class spellCorrect(object):
 Usage:
 Input: 'астроном1я'
 Response: астрономія"""
-    def __init__(self, V=None):
+    def __init__(self, V=None, model=None):
         """Constructor method to load external probMaker class, load dictionary and words counts """
         self.vocab = self.load_vocab()
         self.counts = self.load_counts()
@@ -26,6 +26,7 @@ Response: астрономія"""
         self.error_df = self.load_error_df()
         self.pm = probMaker(self.error_df, self.counts)
         self.V = V
+        self.model = model
     
     def load_vocab(self):
         """Method to load dictionary from external data file."""
@@ -113,7 +114,7 @@ Response: астрономія"""
                 if upper_boundary>0 and lower_boundary>0:
                     if not seqprob:
                         dataset = CharDataset([string], V=self.V)
-                        seqprob = seq_prob(model, dataset, V)
+                        seqprob = seq_prob(model=self.model, dataset, V=self.V)
                     if seqprob<=upper_boundary or seqprob>=lower_boundary:
                         self.correction = self.return_upper(self.get_best(string),string)
                     else:
