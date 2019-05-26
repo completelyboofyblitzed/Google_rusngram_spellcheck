@@ -51,9 +51,9 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True):
                                          record.volume_count]) #(idx, raw_n_gram, n_gram, year, match_count, volume_count)"
                         
                 else:
-                    if record.year < 1918:
+                    if record.year >= 1918:
                         record = next(records)
-                    elif record.year >= 1918:
+                    elif record.year < 1918:
                         ngram = record.ngram
                         normalized = normalize(ngram)
                         new_ngram = to_check(normalized, 
