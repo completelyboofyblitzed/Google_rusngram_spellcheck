@@ -28,7 +28,7 @@ def normalize(ngram):
         
     return(ngram)
 
-def load_ngrams(my_len, my_lang, my_indices, before_1918=False):
+def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=False):
     fname, url, records = next(readline_google_store(ngram_len=my_len, lang=my_lang, indices=my_indices))
     record = next(records)
     e = 0
