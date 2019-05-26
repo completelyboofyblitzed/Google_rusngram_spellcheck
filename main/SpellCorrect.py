@@ -11,6 +11,7 @@ import pandas as pd
 import re
 from string import punctuation
 from functools import reduce
+from Utils import read_corpus, CharDataset
 
 class spellCorrect(object):
     """A class to correct non-dictionary words in Google Ngrams using Noisy Channel Model, Error Confusion Matrix, Damerau-Levenshtein Edit Distance and a Char Language model to help define real-word non-dictionary tokens
