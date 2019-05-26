@@ -33,6 +33,7 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True):
     record = next(records)
     e = 0
     count = 0
+    ngram = ''
     with open('unigrams_' + my_index + '.tsv', 'w') as f:
         writer = csv.writer(f, delimiter='\t')
         while True:
@@ -54,17 +55,8 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True):
                     if record.year >= 1918:
                         record = next(records)
                     elif record.year < 1918:
-                        ngram = record.ngram
-                        normalized = normalize(ngram)
-                        new_ngram = to_check(normalized, 
-                                             seqprob=False, 
-                                             upper_boundary=0.0008771931170485914, 
-                                             lower_boundary=0.0003082964103668928)
-                        if new_ngram!=normalized:
-                            is_bastard = True
-                        else:
-                            is_bastard = False
-                        writer.writerow([my_indices,
+                        if record.ngram == ngram:
+                            writer.writerow([my_indices,
                                          ngram,
                                          normalized,
                                          record.year,
@@ -72,7 +64,27 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True):
                                          record.volume_count,
                                          '', #new_idx
                                         is_bastard, #is_bastard
-                                        new_ngram]) #new_ngram]) 
+                                        new_ngram])
+                        else:
+                            ngram = record.ngram
+                            normalized = normalize(ngram)
+                            new_ngram = to_check(normalized, 
+                                                 seqprob=False, 
+                                                 upper_boundary=0.0008771931170485914, 
+                                                 lower_boundary=0.0003082964103668928)
+                            if new_ngram!=normalized:
+                                is_bastard = True
+                            else:
+                                is_bastard = False
+                            writer.writerow([my_indices,
+                                             ngram,
+                                             normalized,
+                                             record.year,
+                                             record.match_count,
+                                             record.volume_count,
+                                             '', #new_idx
+                                            is_bastard, #is_bastard
+                                            new_ngram]) #new_ngram]) 
                         #`idx`, `raw_n_gram`, `n_gram`, `year`, `match_count`, `volume_count`, `new_idx`, `is_bastard`, `new_ngram`
                 if e%1000==0:
                     print('loaded: ' + str(e)) # отладка
