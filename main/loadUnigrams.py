@@ -120,8 +120,9 @@ def main():
                        'u', 'v', 'w', 'x', 'y', 'z', 'other']
                                          
                                          
-    for idx in unigram_indices:
-        load_ngrams(idx)
+#     for idx in unigram_indices:
+#         load_ngrams(idx)
+    load_ngrams('a')
         
     return 0
 
