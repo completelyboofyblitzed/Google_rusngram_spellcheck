@@ -68,7 +68,7 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True):
                         else:
                             ngram = record.ngram
                             normalized = normalize(ngram)
-                            new_ngram = to_check(normalized, 
+                            new_ngram = correct.to_check(normalized, 
                                                  seqprob=False, 
                                                  upper_boundary=0.0008771931170485914, 
                                                  lower_boundary=0.0003082964103668928)
