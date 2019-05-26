@@ -28,7 +28,7 @@ def normalize(ngram):
         
     return(ngram)
 
-def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True):
+def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=None):
     fname, url, records = next(readline_google_store(ngram_len=my_len, lang=my_lang, indices=my_indices))
     record = next(records)
     e = 0
@@ -122,7 +122,7 @@ def main():
                                          
 #     for idx in unigram_indices:
 #         load_ngrams(idx)
-    load_ngrams('a')
+    load_ngrams('a', correct=correct)
         
     return 0
 
