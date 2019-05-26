@@ -28,7 +28,7 @@ def normalize(ngram):
         
     return(ngram)
 
-def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=False):
+def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True):
     fname, url, records = next(readline_google_store(ngram_len=my_len, lang=my_lang, indices=my_indices))
     record = next(records)
     e = 0
@@ -37,7 +37,7 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=False):
         writer = csv.writer(f, delimiter='\t')
         while True:
             try:
-                if before_1918:
+                if not before_1918:
                     if record.year < 1918:
                         record = next(records)
                     elif record.year >= 1918:
@@ -60,6 +60,10 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=False):
                                              seqprob=False, 
                                              upper_boundary=0.0008771931170485914, 
                                              lower_boundary=0.0003082964103668928)
+                        if new_ngram!=normalized:
+                            is_bastard = True
+                        else:
+                            is_bastard = False
                         writer.writerow([my_indices,
                                          ngram,
                                          normalized,
@@ -67,7 +71,7 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=False):
                                          record.match_count,
                                          record.volume_count,
                                          '', #new_idx
-                                        False, #is_bastard
+                                        is_bastard, #is_bastard
                                         new_ngram]) #new_ngram]) 
                         #`idx`, `raw_n_gram`, `n_gram`, `year`, `match_count`, `volume_count`, `new_idx`, `is_bastard`, `new_ngram`
                 if e%1000==0:
