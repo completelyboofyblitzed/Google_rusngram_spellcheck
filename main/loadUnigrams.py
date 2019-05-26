@@ -34,7 +34,7 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True):
     e = 0
     count = 0
     ngram = ''
-    with open('unigrams_' + my_index + '.tsv', 'w') as f:
+    with open('unigrams_' + my_indices + '.tsv', 'w') as f:
         writer = csv.writer(f, delimiter='\t')
         while True:
             try:
