@@ -114,7 +114,7 @@ Response: астрономія"""
                 if upper_boundary>0 and lower_boundary>0:
                     if not seqprob:
                         dataset = CharDataset([string], V=self.V)
-                        seqprob = seq_prob(model=self.model, dataset, V=self.V)
+                        seqprob = seq_prob(self.model, dataset, self.V)
                     if seqprob<=upper_boundary or seqprob>=lower_boundary:
                         self.correction = self.return_upper(self.get_best(string),string)
                     else:
