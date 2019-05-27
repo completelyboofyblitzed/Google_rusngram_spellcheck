@@ -55,6 +55,7 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                     if record.year >= 1918:
                         record = next(records)
                     elif record.year < 1918:
+                        new_idx = my_indices
                         if record.ngram == ngram:
                             writer.writerow([my_indices,
                                          ngram,
@@ -76,6 +77,8 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                                 is_bastard = True
                             else:
                                 is_bastard = False
+                                if new_ngram[0]==normalized[0]:
+                                    new_idx=''
                             writer.writerow([my_indices,
                                              ngram,
                                              normalized,
