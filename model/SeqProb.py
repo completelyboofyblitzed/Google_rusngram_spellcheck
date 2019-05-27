@@ -5,7 +5,7 @@ import torch
 device = torch.device('cpu')
 
 def seq_prob(model, dataset, vocab):
-    for i in range(10):
+    for i in range(len(dataset)):
         x, y, word_len = dataset[i]
         x = x.to(device)
         y = y.to(device)
@@ -21,5 +21,8 @@ def seq_prob(model, dataset, vocab):
             except KeyError:
                 idx = vocab.char2idx["<unk>"]
             probs.append(y_pred[char_idx][idx])
+        try:
             multiplication = reduce(lambda x, y: x*y, probs)
+        except:
+            multiplication = 1E-7 # костыль
         return multiplication/(word_len-1)
