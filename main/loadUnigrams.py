@@ -66,6 +66,7 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                                          '', #new_idx
                                         is_bastard, #is_bastard
                                         new_ngram])
+                            e += 1
                         else:
                             ngram = record.ngram
                             normalized = normalize(ngram)
@@ -88,10 +89,11 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                                              '', #new_idx
                                             is_bastard, #is_bastard
                                             new_ngram]) #new_ngram]) 
+                            e += 1
                         #`idx`, `raw_n_gram`, `n_gram`, `year`, `match_count`, `volume_count`, `new_idx`, `is_bastard`, `new_ngram`
                 if e%1000==0:
                     print('loaded: ' + str(e)) # отладка
-                e += 1
+                
                 record = next(records)
             except StopIteration:
                 break
