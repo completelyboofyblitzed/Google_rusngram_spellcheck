@@ -55,34 +55,10 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                     if record.year >= 1918:
                         record = next(records)
                     elif record.year < 1918:
-                        new_idx = my_indices
-                        if record.ngram == ngram:
-                            writer.writerow([my_indices,
-                                         ngram,
-                                         normalized,
-                                         record.year,
-                                         record.match_count,
-                                         record.volume_count,
-                                         '', #new_idx
-                                        is_bastard, #is_bastard
-                                        new_ngram])
-                            e += 1
-                            if e%1000==0:
-                                print('loaded: ' + str(e)) # отладка
-                        else:
-                            ngram = record.ngram
-                            normalized = normalize(ngram)
-                            new_ngram = correct.to_check(normalized, 
-                                                 seqprob=False, 
-                                                 upper_boundary=0.0008771931170485914, 
-                                                 lower_boundary=0.0003082964103668928)
-                            if new_ngram!=normalized:
-                                is_bastard = True
-                            else:
-                                is_bastard = False
-                                if new_ngram[0]==normalized[0]:
-                                    new_idx=''
-                            writer.writerow([my_indices,
+                        if e>160000:
+                            new_idx = my_indices
+                            if record.ngram == ngram:
+                                writer.writerow([my_indices,
                                              ngram,
                                              normalized,
                                              record.year,
@@ -90,7 +66,33 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                                              record.volume_count,
                                              '', #new_idx
                                             is_bastard, #is_bastard
-                                            new_ngram]) #new_ngram]) 
+                                            new_ngram])
+                                e += 1
+                                if e%1000==0:
+                                    print('loaded: ' + str(e)) # отладка
+                            else:
+                                ngram = record.ngram
+                                normalized = normalize(ngram)
+                                new_ngram = correct.to_check(normalized, 
+                                                     seqprob=False, 
+                                                     upper_boundary=0.0008771931170485914, 
+                                                     lower_boundary=0.0003082964103668928)
+                                if new_ngram!=normalized:
+                                    is_bastard = True
+                                else:
+                                    is_bastard = False
+                                    if new_ngram[0]==normalized[0]:
+                                        new_idx=''
+                                writer.writerow([my_indices,
+                                                 ngram,
+                                                 normalized,
+                                                 record.year,
+                                                 record.match_count,
+                                                 record.volume_count,
+                                                 '', #new_idx
+                                                is_bastard, #is_bastard
+                                                new_ngram]) #new_ngram]) 
+                          else:
                             e += 1
                             if e%1000==0:
                                 print('loaded: ' + str(e)) # отладка
