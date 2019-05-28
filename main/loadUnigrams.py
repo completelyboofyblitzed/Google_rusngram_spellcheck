@@ -92,7 +92,7 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                                                  '', #new_idx
                                                 is_bastard, #is_bastard
                                                 new_ngram]) #new_ngram]) 
-                          else:
+                        else:
                             e += 1
                             if e%1000==0:
                                 print('loaded: ' + str(e)) # отладка
