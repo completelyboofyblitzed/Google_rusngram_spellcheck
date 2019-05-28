@@ -23,6 +23,7 @@ def seq_prob(model, dataset, vocab):
             probs.append(y_pred[char_idx][idx])
         try:
             multiplication = reduce(lambda x, y: x*y, probs)
+            final_prob = multiplied/word_len[0].float().to(device)
         except:
-            multiplication = 1E-7 # костыль
-        return multiplication/(word_len-1)
+            final_prob = 1E-7 # костыль
+        return final_prob
