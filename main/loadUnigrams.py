@@ -55,7 +55,7 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                     if record.year >= 1918:
                         record = next(records)
                     elif record.year < 1918:
-                        if e>265321:
+                        if e>411000:
                             new_idx = my_indices
                             if record.ngram == ngram:
                                 writer.writerow([my_indices,
