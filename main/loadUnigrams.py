@@ -1,5 +1,4 @@
-### TODO: define boundaries, model, etc
-### condition if word == the word before
+### TODO: transliteration
 
 import torch
 from google_ngram_downloader import readline_google_store
@@ -58,13 +57,14 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                         if e>134178:
                             new_idx = my_indices
                             if record.ngram == ngram:
+#                                 new_idx = 
                                 writer.writerow([my_indices,
                                              ngram,
                                              normalized,
                                              record.year,
                                              record.match_count,
                                              record.volume_count,
-                                             '', #new_idx
+                                             new_idx, #new_idx
                                             is_bastard, #is_bastard
                                             new_ngram])
                                 e += 1
