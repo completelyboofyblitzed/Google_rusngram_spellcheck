@@ -54,10 +54,11 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                     if record.year >= 1918:
                         record = next(records)
                     elif record.year < 1918:
-                        if e>134178:
+                        if e>-1:
                             new_idx = my_indices
                             if record.ngram == ngram:
-#                                 new_idx = 
+                                if new_ngram[0].lower() in mapping.keys():
+                                    new_idx = mapping[new_idx]
                                 writer.writerow([my_indices,
                                              ngram,
                                              normalized,
@@ -96,10 +97,6 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                             e += 1
                             if e%1000==0:
                                 print('loaded: ' + str(e)) # отладка
-                        #`idx`, `raw_n_gram`, `n_gram`, `year`, `match_count`, `volume_count`, `new_idx`, `is_bastard`, `new_ngram`
-#                     if e%1000==0:
-#                         print('loaded: ' + str(e)) # отладка
-                
                 record = next(records)
             except StopIteration:
                 break
@@ -129,6 +126,40 @@ def main():
                        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
                        'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
                        'u', 'v', 'w', 'x', 'y', 'z', 'other']
+    
+    mapping = {'а':'a',
+           'я':'a',
+           'ь':'a',
+           'б':'b',
+           'ц':'c',
+           'ч':'c',
+           'д':'d',
+           'е':'e',
+           'э','e',
+           'ф':'f',
+           'г':'g',
+           'х':'h',
+           'и':'i',
+           'й':'j',
+           'к':'k',
+           'л':'l',  
+           'м':'m',
+           'н':'n',
+           'о':'o',
+           'п':'p',
+           '':'q',
+           'р':'r',
+           'с':'s',
+           'ш':'s',
+           'щ':'s',
+           'т':'t',
+           'у':'u',
+           'в':'v',
+           '':'w',
+           '':'x',
+           '':'y',
+           'з':'z',
+           'ж':'z'}
                                          
                                          
 #     for idx in unigram_indices:
