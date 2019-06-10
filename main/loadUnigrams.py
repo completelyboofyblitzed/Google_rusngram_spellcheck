@@ -61,7 +61,12 @@ def normalize(ngram):
         
     return(ngram)
 
+indices = ''
+
 def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=None):
+    
+    global indices
+    
     fname, url, records = next(readline_google_store(ngram_len=my_len, lang=my_lang, indices=my_indices))
     record = next(records)
     e = 0
@@ -91,8 +96,7 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                         if e>-1:
                             new_idx = my_indices
                             if record.ngram == ngram:
-                                if new_ngram[0].lower() in mapping.keys():
-                                    new_idx = mapping[new_idx]
+                                new_idx = indices
                                 writer.writerow([my_indices,
                                              ngram,
                                              normalized,
@@ -116,8 +120,12 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                                     is_bastard = True
                                 else:
                                     is_bastard = False
-                                    if new_ngram[0]==normalized[0]:
-                                        new_idx=''
+                                    if new_ngram[0]!=normalized[0]:
+                                        if new_ngram[0].lower() in mapping.keys():
+                                            new_idx = mapping[new_idx]
+                                            indices = new_idx
+                                        else:
+                                            indices = my_indices
                                 writer.writerow([my_indices,
                                                  ngram,
                                                  normalized,
