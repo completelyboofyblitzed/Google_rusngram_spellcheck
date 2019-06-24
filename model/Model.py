@@ -6,8 +6,6 @@ import torch
 import torch.nn as nn
 import torch.nn.utils
 import torch.nn.functional as F
-from torch.utils.data.dataset import Dataset
-from torch.utils.data.dataloader import DataLoader
 
 
 class CharLM(nn.Module):
