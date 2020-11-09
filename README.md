@@ -1,4 +1,5 @@
 # Google_rusngram_spellcheck
+HSE Project
 An attempt to correct russian google ngrams before 1918
 
 ### Usage:
