@@ -1,5 +1,4 @@
-### TODO: transliteration
-
+import time
 import torch
 from google_ngram_downloader import readline_google_store
 from string import punctuation
@@ -107,7 +106,7 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                                             is_bastard, #is_bastard
                                             new_ngram])
                                 e += 1
-                                if e%1000==0:
+                                if e%10000==0:
                                     print('loaded: ' + str(e)) # отладка
                             else:
                                 ngram = record.ngram
@@ -137,12 +136,14 @@ def load_ngrams(my_indices, my_len=1, my_lang='rus', before_1918=True, correct=N
                                                 new_ngram]) #new_ngram]) 
                         else:
                             e += 1
-                            if e%1000==0:
+                            if e%10000==0:
                                 print('loaded: ' + str(e)) # отладка
-                record = next(records)
             except StopIteration:
                 break
                 print("StopIteration")
+            except:
+                time.sleep(60)
+                record = next(records)
                                          
     print(str(count) + " " + my_indices + " ngrams saved")
     return 0
@@ -164,17 +165,16 @@ def main():
     
     correct = spellCorrect(V=V, model=model)
 
-    unigram_indices = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+    unigram_indices = ['3', '5', '6', '7', '8', '9',
                        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
                        'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
                        'u', 'v', 'w', 'x', 'y', 'z', 'other']                                         
                                          
-#     for idx in unigram_indices:
-#         load_ngrams(idx)
-    load_ngrams('a', correct=correct)
+#     for idx in unigram_indices[:2]:
+    load_ngrams('3', correct=correct)
+#     load_ngrams('a', correct=correct)
         
     return 0
 
 if __name__ == '__main__':
     main()
-

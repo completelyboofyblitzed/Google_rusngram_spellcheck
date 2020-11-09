@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-### TODO: определить model, dataset,
+
 
 from ProbMaker import probMaker
 import sys
@@ -83,7 +83,10 @@ Response: астрономія"""
                     print(editops(candidate,error))
                     return error 
                 p_ew_candidate.append(self.pm.P_ew(editop,e,w))
-            p[i] = self.pm.P_w(candidate)*reduce(lambda x, y: x*y, p_ew_candidate)/len(p_ew_candidate)
+            if p_ew_candidate:
+                p[i] = self.pm.P_w(candidate)*reduce(lambda x, y: x*y, p_ew_candidate)/len(p_ew_candidate)
+            else:
+                return error
         try:    
             best_idx = p.index(max(p))
             return(candidates[best_idx][-1])
